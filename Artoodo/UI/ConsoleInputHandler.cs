@@ -1,6 +1,6 @@
-using ConsoleApp1.Domain;
+using Artoodo.Domain;
 
-namespace ConsoleApp1.UI;
+namespace Artoodo.UI;
 
 public static class ConsoleInputHandler
 {

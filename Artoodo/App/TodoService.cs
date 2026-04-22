@@ -1,7 +1,7 @@
-using ConsoleApp1.Domain;
+using Artoodo.Domain;
 
 
-namespace ConsoleApp1.App;
+namespace Artoodo.App;
 public class TodoService
 {
 

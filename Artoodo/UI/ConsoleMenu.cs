@@ -1,6 +1,6 @@
-using ConsoleApp1.App;
+using Artoodo.App;
 
-namespace ConsoleApp1.UI;
+namespace Artoodo.UI;
 
 public class ConsoleMenu
 {

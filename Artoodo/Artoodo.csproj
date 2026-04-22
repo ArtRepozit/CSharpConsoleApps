@@ -5,6 +5,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>Artoodo</AssemblyName>
+    <RootNamespace>Artoodo</RootNamespace>
   </PropertyGroup>
 
 </Project>

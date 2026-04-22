@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ConsoleApp1.UI;
-using ConsoleApp1.App;
+using Artoodo.UI;
+using Artoodo.App;
 
-namespace TodoApp;
+namespace Artoodo;
 public class Program
 {
     public static void Main(string[] args)

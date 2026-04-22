@@ -1,4 +1,4 @@
-namespace ConsoleApp1.Domain;
+namespace Artoodo.Domain;
 public class TodoTask
 {
     public int Id { get; set; }
