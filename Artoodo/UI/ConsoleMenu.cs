@@ -5,9 +5,11 @@ namespace Artoodo.UI;
 public class ConsoleMenu
 {
     private readonly TodoService _service;
-    public ConsoleMenu(TodoService service)
+    private readonly TaskExportService _taskExportService;
+    public ConsoleMenu(TodoService service, TaskExportService taskExportService)
     {
         _service = service;
+        _taskExportService = taskExportService;
     }
 
     public void Run()
@@ -18,7 +20,8 @@ public class ConsoleMenu
             Console.WriteLine("2. Add a new task");
             Console.WriteLine("3. Update task status");
             Console.WriteLine("4. Delete a task");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("5. Export tasks to YAML");
+            Console.WriteLine("6. Exit");
 
             var choice = ConsoleInputHandler.ReadInt("Choose an option: ");
             switch (choice)
@@ -36,6 +39,9 @@ public class ConsoleMenu
                     DeleteTask();
                     break;
                 case 5:
+                    ExportTasks();
+                    break;
+                case 6:
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
@@ -85,5 +91,10 @@ public class ConsoleMenu
             Console.WriteLine("Task deleted successfully.");
         else
             Console.WriteLine("Task not found. Please try again.");
+    }
+
+    private void ExportTasks()
+    {
+        _taskExportService.ExportTasksAsYaml(_service.GetAllTasks);
     }
 }
