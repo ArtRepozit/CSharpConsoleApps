@@ -6,10 +6,12 @@ public class ConsoleMenu
 {
     private readonly TodoService _service;
     private readonly TaskExportService _taskExportService;
-    public ConsoleMenu(TodoService service, TaskExportService taskExportService)
+    private readonly TaskImportService _taskImportService;
+    public ConsoleMenu(TodoService service, TaskExportService taskExportService, TaskImportService taskImportService)
     {
         _service = service;
         _taskExportService = taskExportService;
+        _taskImportService = taskImportService;
     }
 
     public void Run()
@@ -21,7 +23,8 @@ public class ConsoleMenu
             Console.WriteLine("3. Update task status");
             Console.WriteLine("4. Delete a task");
             Console.WriteLine("5. Export tasks to YAML");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Import tasks from YAML");
+            Console.WriteLine("7. Exit");
 
             var choice = ConsoleInputHandler.ReadInt("Choose an option: ");
             switch (choice)
@@ -42,6 +45,9 @@ public class ConsoleMenu
                     ExportTasks();
                     break;
                 case 6:
+                    ImportTasks();
+                    break;
+                case 7:
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
@@ -96,5 +102,23 @@ public class ConsoleMenu
     private void ExportTasks()
     {
         _taskExportService.ExportTasksAsYaml(_service.GetAllTasks);
+    }
+
+    private void ImportTasks()
+    {
+        var filePath = ConsoleInputHandler.ReadNonEmpty("Enter the path to the YAML file to import: ");
+        var importedTasks = _taskImportService.ImportTasksFromYaml(filePath);
+        if (importedTasks.Count > 0)
+        {
+            foreach (var task in importedTasks)
+            {
+                _service.AddTask(task.Name, task.Description, task.DueDate, task.Status);
+            }
+            Console.WriteLine($"Successfully imported {importedTasks.Count} tasks.");
+        }
+        else
+        {
+            Console.WriteLine("No tasks were imported because the file was empty or an error occurred.");
+        }
     }
 }

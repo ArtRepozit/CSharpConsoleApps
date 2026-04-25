@@ -7,14 +7,14 @@ public class TodoTask
     public DateTime DueDate { get; set; }
     public TaskStatus Status { get; set; }
 
-    public TodoTask(int id, string name, string description, DateTime dueDate)
+    public TodoTask() { }
+    public TodoTask(int id, string name, string description, DateTime dueDate, TaskStatus status = TaskStatus.NotStarted)
     {
-
         Id = id;
         Name = name;
         Description = description;
         DueDate = dueDate;
-        Status = TaskStatus.NotStarted;
+        Status = status;
     }
 }
 

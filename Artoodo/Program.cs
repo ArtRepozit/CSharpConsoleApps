@@ -9,7 +9,8 @@ public class Program
         Console.WriteLine("Welcome to the TODO list console app!");
         var service = new TodoService();
         var taskExportService = new TaskExportService();
-        var menu = new ConsoleMenu(service, taskExportService);
+        var taskImportService = new TaskImportService();
+        var menu = new ConsoleMenu(service, taskExportService, taskImportService);
         menu.Run();
     }
 }
