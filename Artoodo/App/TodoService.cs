@@ -1,5 +1,5 @@
 using Artoodo.Domain;
-
+using TaskStatus = Artoodo.Domain.TaskStatus;
 
 namespace Artoodo.App;
 public class TodoService
@@ -18,14 +18,14 @@ public class TodoService
         return _tasks.FirstOrDefault(t => t.Id == id);
     }
     
-    public TodoTask AddTask(string name, string description, DateTime dueDate)
+    public TodoTask AddTask(string name, string description, DateTime dueDate, TaskStatus status = TaskStatus.NotStarted)
     {
-        var newTask = new TodoTask(nextTaskId++, name, description, dueDate);
+        var newTask = new TodoTask(nextTaskId++, name, description, dueDate, status);
         _tasks.Add(newTask);
         return newTask;
     }
 
-    public bool UpdateTaskStatus(int id, Domain.TaskStatus newStatus)
+    public bool UpdateTaskStatus(int id, TaskStatus newStatus)
     {
         var task = GetTaskById(id);
         if (task == null)            

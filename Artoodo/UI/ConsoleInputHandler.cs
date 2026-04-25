@@ -1,5 +1,3 @@
-using Artoodo.Domain;
-
 namespace Artoodo.UI;
 
 public static class ConsoleInputHandler
